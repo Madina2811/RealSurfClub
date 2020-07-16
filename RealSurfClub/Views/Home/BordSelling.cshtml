@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "BordSelling";
+}
+
+<h2>BordSelling</h2>
+
+@ViewBag.Message
+<h1>@ViewBag.Ads</h1>
+
+<ul>
+    @foreach (var price in ViewBag.Prices)
+    {
+        <li class="price redtext">@price рублей.</li>
+    }
+</ul>
+
+Продавец: @ViewBag.Seller.Name @ViewBag.Seller.LastName
