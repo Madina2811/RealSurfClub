@@ -17,18 +17,43 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
+                <img src=~/Content/Images/Logo.jpg height="50" />
+                
+               <!-- @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })-->
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Информация", "About", "Home")</li>
-                    <li>@Html.ActionLink("Связаться", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Продажа досок", "BordSelling", "Home")</li>
-                    <li>@Html.ActionLink("Продавец", "Index", "Seller")</li>
+                <ul class="nav navbar-nav pull-right">
 
-                    <li>@Html.ActionLink("Стефания", "Index", "My")</li>
-                    <li>@Html.ActionLink("Агафья", "AboutMe", "My")</li>
+                    @if (Session["UserId"] != null)
+                    {
+                    <li style="display:inline-flex">
+
+
+                        @{
+
+
+                            var photo = Session["Photo"];
+
+                            if (photo != Guid.Empty.ToString())
+                            {
+                                var url = string.Format("~/Content/Images/Uploads/{0}.jpg", photo);
+                                <img src=@Url.Content(url) height="25" />
+                            }
+                        }
+
+                        @Session["Nickname"]
+                        @Html.ActionLink("Выйти", "Logout", "Home")
+                    </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Войти", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Регистрация", "Index", "Register")</li>
+                    }
+
+
+
                 </ul>
             </div>
         </div>

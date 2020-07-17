@@ -1,9 +1,11 @@
 ﻿using RealSurfClub.DAL;
+using RealSurfClub.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace RealSurfClub.Controllers
 {
@@ -16,35 +18,40 @@ namespace RealSurfClub.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+        [HttpPost]
+        public ActionResult Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userInDb = dbContext.Users.FirstOrDefault(
+                    c => c.Nickname == model.Nickname &&
+                    c.Password == model.Password
+                    );
+                if (userInDb != null)
+                {
+                    FormsAuthentication.SetAuthCookie(userInDb.Nickname, model.RememberMe);
+                    Session["UserId"] = userInDb.Id.ToString();
+                    Session["Nickname"] = userInDb.Nickname;
+                    Session["Photo"] = userInDb.Photo.ToString();
+
+
+                    return RedirectToAction("Index", "Feed");
+                }
+                else 
+                {
+                    ModelState.AddModelError(string.Empty, "Неверный псевдоним или пароль");
+                }
+            }
+            return View("Index", model);
         }
 
-        public ActionResult Contact()
+        public ActionResult Logout()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult BordSelling()
-        {
-            ViewBag.Message = "Surfing-club-sells-boards";
-            ViewBag.Ads = "Покупайте наши доски";
-
-            ViewBag.Prices = new[] { 100, 120, 140, 99 };
-
-            var user = dbContext.Users.FirstOrDefault();
-
-            ViewBag.Seller = user;
-
-
-
-
-            return View();
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            Request.Cookies.Clear();
+            return RedirectToAction("Index");
         }
     }
 }
