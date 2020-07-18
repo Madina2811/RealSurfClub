@@ -19,7 +19,7 @@ namespace RealSurfClub.DAL
             };
 
 
-
+            
             var post1 = new Post
             {
                 Text = "Первый тестовый пост",
@@ -33,10 +33,11 @@ namespace RealSurfClub.DAL
                 PublishDate = DateTime.Now,
                 Author = user
             };
+            
 
             context.Users.Add(user);
-            context.Posts.Add(post1);
-            context.Posts.Add(post2);
+            //context.Posts.Add(post1);
+            //context.Posts.Add(post2);
             context.SaveChanges();
         }
     }
