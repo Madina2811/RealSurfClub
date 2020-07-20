@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    width: 400px;
+    width: 100%;
 }
 
 .surfheading {
@@ -37,7 +37,7 @@ label {
 
 
 .redtext {
-color:aff0000;
+color:#ff0000;
 }
 
 .form-style {
