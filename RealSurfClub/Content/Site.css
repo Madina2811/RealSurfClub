@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    width: 400px;
 }
 
 .surfheading {
@@ -64,4 +64,20 @@ color:aff0000;
 
 .text-input {
     width: 100%; /* Ширина изображений */
+}
+
+.tiny-panel{
+    margin:20px auto;
+
+}
+
+.add-post-area{
+    width:100%;
+    max-width:100%;
+
+
+}
+
+.panel-heading {
+    background-color: #c8d3d9;
 }

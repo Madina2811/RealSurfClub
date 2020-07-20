@@ -1,7 +1,7 @@
 ﻿@model RealSurfClub.Models.ViewModels.LoginViewModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Клуб любителей серфинга";
 }
 <br></br>
 @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -37,8 +37,8 @@
         </div>
     </form>
     <br></br>
-    <div style="text-align:center">
-        Нет аккаунта?
-        <button type="submit" class="btn button-style">Зарегистрироваться</button>
-    </div>
+<div style="text-align:center">
+    Нет аккаунта?
+    <a href="~/Register" type="button" class="btn button-style" style="margin-left: auto">Зарегистрироваться</a>
+</div>
 }

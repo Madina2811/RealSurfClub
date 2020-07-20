@@ -18,7 +18,8 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a href="~/Feed"><img src=~/Content/Images/Logo.jpg height="50" /></a>
+                <a href="@Url.Action("Index", "Feed")">
+                <img src="@Url.Content("~/Content/Images/Logo.jpg")", height="50" /></a>
 
                 <!-- @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })-->
             </div>
@@ -27,23 +28,24 @@
 
                     @if (Session["UserId"] != null)
                     {
-                    <li style="display:inline-flex">
+                    <li>
 
 
                         @{
-
-
                             var photo = Session["Photo"];
 
-                            if (photo != Guid.Empty.ToString())
+                            if (photo != null)
                             {
                                 var url = string.Format("~/Content/Images/Uploads/{0}.jpg", photo);
-                                <img src=@Url.Content(url) height="25" />
+                                <img src=@Url.Content(photo.ToString()) height="25" />
                             }
                         }
 
                         @Session["Nickname"]
-                        @Html.ActionLink("Выйти", "Logout", "Home")
+                        <!--@Html.ActionLink("Выйти", "Logout", "Home")-->
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/Content/Images/Exit.jpg")" , height="50" />
+                        </a>
                     </li>
                     }
                     else
@@ -60,10 +62,6 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - мое приложение ASP.NET</p>
-        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

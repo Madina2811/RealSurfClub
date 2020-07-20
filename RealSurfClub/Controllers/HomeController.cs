@@ -1,4 +1,5 @@
 ﻿using RealSurfClub.DAL;
+using RealSurfClub.Helpers;
 using RealSurfClub.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -33,8 +34,8 @@ namespace RealSurfClub.Controllers
                     FormsAuthentication.SetAuthCookie(userInDb.Nickname, model.RememberMe);
                     Session["UserId"] = userInDb.Id.ToString();
                     Session["Nickname"] = userInDb.Nickname;
-                    Session["Photo"] = userInDb.Photo.ToString();
-
+                    Session["Photo"] = ImageUrlHelper.GetUrl(userInDb.Photo);
+                    
 
                     return RedirectToAction("Index", "Feed");
                 }

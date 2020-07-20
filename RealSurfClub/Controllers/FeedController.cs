@@ -15,7 +15,7 @@ namespace RealSurfClub.Controllers
         // GET: Feed
         public ActionResult Index()
         {
-            var posts = dbContext.Posts.ToList();
+            var posts = dbContext.Posts.OrderByDescending(c=>c.Id).ToList();
             ViewBag.Posts = posts;
             return View();
         }
@@ -29,7 +29,7 @@ namespace RealSurfClub.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Не загружено изображение и отсутствует текст");
 
-                var postsInDb = dbContext.Posts.ToList();
+                var postsInDb = dbContext.Posts.OrderByDescending(c => c.Id).ToList();
                 ViewBag.Posts = postsInDb;
                 return View("Index", model);
             }
@@ -38,10 +38,10 @@ namespace RealSurfClub.Controllers
 
 
             if (imageData != null) { 
-            model.Photo = ImageSaveHelper.SaveImage(imageData); //todo надо обрабатывать и прикреплять изображение
+            model.Photo = ImageSaveHelper.SaveImage(imageData);
          }
 
-            var userId = 1;//todo брать идентификатор авторизованного пользователя
+            var userId = Convert.ToInt32(Session["UserId"]);
             var userInDb = dbContext.Users.FirstOrDefault(c => c.Id == userId);
 
             model.Author = userInDb;
@@ -51,7 +51,7 @@ namespace RealSurfClub.Controllers
 
             dbContext.SaveChanges();
 
-            var posts = dbContext.Posts.ToList();
+            var posts = dbContext.Posts.OrderByDescending(c => c.Id).ToList();
             ViewBag.Posts = posts;
 
             return View("Index");

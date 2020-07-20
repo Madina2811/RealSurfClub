@@ -3,15 +3,15 @@ using System.Data.Entity;
 using System;
 namespace RealSurfClub.DAL
 {
-    public class SurfDbInitializer : DropCreateDatabaseAlways<SurfDbContext>
-       // DropCreateDatabaseIfModelChanges<SurfDbContext>
+    public class SurfDbInitializer : //DropCreateDatabaseAlways<SurfDbContext>
+    DropCreateDatabaseIfModelChanges<SurfDbContext>
     {
         protected override void Seed(SurfDbContext context)
         {
             var user = new User
             {
                 Nickname = "vsel",
-                Password = "123",
+                Password = "123456",
                 LastName = "Старозубов",
                 Name = "Всеволод",
                 Email = "vsel@star.ru",
