@@ -147,6 +147,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\RealSurfDatabase.mdf" />
+    <Content Include="App_Data\RealSurfDatabase_log.ldf">
+      <DependentUpon>RealSurfDatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\EntityFramework.dll" />
@@ -278,7 +282,6 @@
     <Content Include="Views\Register\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\Images\Uploads\" />
   </ItemGroup>
   <ItemGroup>
