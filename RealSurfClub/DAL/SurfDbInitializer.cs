@@ -3,8 +3,8 @@ using System.Data.Entity;
 using System;
 namespace RealSurfClub.DAL
 {
-    public class SurfDbInitializer : //DropCreateDatabaseAlways<SurfDbContext>
-    DropCreateDatabaseIfModelChanges<SurfDbContext>
+    public class SurfDbInitializer : DropCreateDatabaseAlways<SurfDbContext>
+    //DropCreateDatabaseIfModelChanges<SurfDbContext>
     {
         protected override void Seed(SurfDbContext context)
         {
