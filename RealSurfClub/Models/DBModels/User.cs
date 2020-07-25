@@ -14,14 +14,14 @@ namespace RealSurfClub.Models.DBModels
         /// <summary>
         /// Никнейм
         /// </summary>
-        [Display(Name="Псевдоним")]
+        [Display(Name="Псевдоним*")]
         [Required(ErrorMessage ="Ошибка в псевдониме"), MinLength(3), MaxLength(20)]
         public string Nickname { get; set; }
 
         /// <summary>
         /// Электронная почта
         /// </summary>
-        [Display(Name="Почта")]
+        [Display(Name="Почта*")]
         [Required(ErrorMessage = "Указание электронной почты обязательно")]
         [EmailAddress(ErrorMessage ="Неверно указан электронный адрес")]
 
@@ -30,12 +30,12 @@ namespace RealSurfClub.Models.DBModels
         /// <summary>
         /// Пароль
         /// </summary>
-        [Display(Name="Пароль")]
+        [Display(Name="Пароль*")]
         [Required(ErrorMessage = "Ошибка в пароле"), MinLength(6), MaxLength(20)]
 
         public string Password { get; set; }
 
-        [Display(Name = "Подтвердите пароль")]
+        [Display(Name = "Подтвердите пароль*")]
         [NotMapped]
 
         public string PasswordConfirm { get; set; }

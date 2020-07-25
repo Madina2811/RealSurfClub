@@ -17,13 +17,15 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 </div>
                 <div class=" panel-body">
-                    
+
                     @Html.LabelFor(model => model.Text)
-                    @Html.TextAreaFor(model => model.Text, 10, 100, new { htmlAttributes = new { @class = "form-control add-post-area", @cols="40" } })
-                    
+                    @Html.TextAreaFor(model => model.Text, 10, 100, new { htmlAttributes = new { @class = "form-control add-post-area", @cols = "40" } })
+                    @Html.ValidationMessageFor(model => model.Text)
+
+
                     @Html.LabelFor(model => model.Photo)
                     <input name="imageData" type="file" accept="image/jpeg" />
-
+                    <br>
                     <button type="submit" class="btn button-style" style="margin-left: auto">Добавить</button>
 
                 </div>
@@ -52,15 +54,15 @@
             @post.PublishDate
         </div>
         <div class=" panel-body">
-            
-            <p style="font-family:Arial"> @post.Text </p>
 
+            <!--  <p style="font-family:Arial"> @post.Text </p>  -->
+            <div style="word-break: break-all;">@post.Text</div>
 
-                @if (post.Photo != Guid.Empty)
-                {
-                    var url = string.Format("~/Content/Images/Uploads/{0}.jpg", @post.Photo.ToString());
-                    <img src=@Url.Content(url) style="width:100%; height:auto"/>
-                }
+            @if (post.Photo != Guid.Empty)
+            {
+                var url = string.Format("~/Content/Images/Uploads/{0}.jpg", @post.Photo.ToString());
+                <img src=@Url.Content(url) style="width:100%; height:auto" />
+            }
 
 
         </div>

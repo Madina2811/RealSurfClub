@@ -24,6 +24,18 @@ namespace RealSurfClub.Controllers
         public ActionResult AddPost(Post model, HttpPostedFileBase imageData)
         {
 
+
+            if (!ModelState.IsValid)
+            {
+                var postsdb = dbContext.Posts.OrderByDescending(c =>c.Id).ToList();
+                ViewBag.Posts = postsdb;
+
+                return View("Index", model);
+            }
+         
+
+
+
             if(imageData==null &&
                 model.Text == null)
             {
@@ -37,7 +49,17 @@ namespace RealSurfClub.Controllers
             model.PublishDate = DateTime.Now;
 
 
-            if (imageData != null) { 
+            if (imageData != null) 
+            { 
+                if (!ImageFormatHelper.IsJpg(imageData))
+                {
+                    ModelState.AddModelError(string.Empty, "Загруженное изображение не картинка формата JPG");
+                    var postsdb = dbContext.Posts.OrderByDescending(c => c.Id).ToList();
+                    ViewBag.Posts = postsdb;
+                    return View("Index", model);
+                }
+
+
             model.Photo = ImageSaveHelper.SaveImage(imageData);
          }
 
@@ -61,7 +83,7 @@ namespace RealSurfClub.Controllers
 
             var posts = dbContext.Posts.OrderByDescending(c => c.Id).ToList();
             ViewBag.Posts = posts;
-
+            ModelState.Clear();
             return View("Index");
         }
     }

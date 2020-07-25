@@ -24,7 +24,7 @@
                 <!-- @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })-->
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav pull-right" style="display:inline">
+                <ul class="nav navbar-nav pull-right ">
 
                     @if (Session["UserId"] != null)
                     {
@@ -37,13 +37,13 @@
                             if (photo != null)
                             {
                                 var url = string.Format("~/Content/Images/Uploads/{0}.jpg", photo);
-                                <img src=@Url.Content(photo.ToString()) height="25" />
+                                <img class="exit-button" src=@Url.Content(photo.ToString()) class="nick-photo" />
                             }
                         }
 
                         @Session["Nickname"]
                         <!--@Html.ActionLink("Выйти", "Logout", "Home")-->
-                        <a href="@Url.Action("Logout", "Home")">
+                        <a href="@Url.Action("Logout", "Home")" style="display: inline-block; padding: 0;">
                             <img src="@Url.Content("~/Content/Images/Exit.jpg")" , height="25" />
                         </a>
                     </li>

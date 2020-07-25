@@ -22,21 +22,27 @@
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "Password" } })
                 </div>
 
-                <div class="form-group" style="font-family: Calibri; text-align:left; display:flex">
-                    @Html.CheckBoxFor(model => model.RememberMe, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.LabelFor(model => model.RememberMe)
+                <div class="Row">
+                    <div class="Column" style="column-width:30px">
+                        @Html.CheckBoxFor(model => model.RememberMe, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="Column">
+                        @Html.LabelFor(model => model.RememberMe)
+                    </div>
+
                 </div>
 
-                <div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <h3 class="text-danger">@ViewBag.Message</h3>
-                </div>
+                        <div>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <h3 class="text-danger">@ViewBag.Message</h3>
+                        </div>
 
 
-                <button type="submit" class="btn button-style" style="width:100%">Войти</button>
+                        <button type="submit" class="btn button-style" style="width:100%">Войти</button>
             </div>
-        </div>
+            </div>
     </form>
+    
     <br>
 <div style="text-align:center">
     Нет аккаунта?

@@ -42,12 +42,20 @@ namespace RealSurfClub.Controllers
                 var mailInDb = dbContext.Users.FirstOrDefault(c => c.Email == model.Email);
                 if (mailInDb != null)
                 {
-                    ModelState.AddModelError(string.Empty, "Пользователь с такой почтой уже зарегистрирован!");
+                    ModelState.AddModelError(string.Empty, "Пользователь с такой почтой уже существует!");
                     return View("Index", model);
                 }
 
                 if (imageData != null)
                 {
+
+                    if (!ImageFormatHelper.IsJpg(imageData))
+                    {
+                        ModelState.AddModelError(string.Empty, "Загруженное изображение не картинка формата JPG");
+                        return View("Index", model);
+                    }
+
+
                     model.Photo = ImageSaveHelper.SaveImage(imageData);
 
                 }
